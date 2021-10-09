@@ -27,6 +27,7 @@ class ChartsPeriod implements ArgumentInterface
     private $serializer;
 
     /**
+     * 
      * @param Period $period
      * @param Json $serializer
      */
