@@ -16,6 +16,22 @@
             <span><?= $block->escapeHtml(__('Reorder')) ?></span>
         </a>
     <?php endif ?>
+    <?php
+        foreach($_order->getInvoiceCollection() as $invoice){
+            $invoiceIncrementID = $invoice->getIncrementId();
+            $print_invoice_url = 'https://www.designerwholesaleeyewear.com/admin/sales/order_invoice/print/invoice_id/'.$invoice->getId();
+        }
+    ?>
+    <?php 
+    if(isset($invoiceIncrementID)): 
+    ?>
+        <a href="<?= $print_invoice_url ?>" class="action print">
+            <span><?= $block->escapeHtml(__('Print Invoice')) ?></span>
+        </a>
+    <?php 
+    endif;
+    ?>
+
     <a href="<?= $block->escapeUrl($block->getPrintUrl($_order)) ?>"
        class="action print"
        target="_blank"

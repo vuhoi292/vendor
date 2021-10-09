@@ -880,7 +880,16 @@ class Invoice extends AbstractModel implements EntityInterface, InvoiceInterface
      */
     public function getBaseGrandTotal()
     {
-        return $this->getData(InvoiceInterface::BASE_GRAND_TOTAL);
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/product-page-shipping.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info(print_r("orders", true));
+
+        $logger->info(print_r($this->getData(InvoiceInterface::BASE_GRAND_TOTAL), true));
+        // $total = number_format($this->getData(InvoiceInterface::BASE_GRAND_TOTAL), 2, '.', '');
+        $total = number_format('2.0000', 2, '.', '');
+        $logger->info(print_r($total, true));
+        return $total;
     }
 
     /**

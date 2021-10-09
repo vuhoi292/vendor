@@ -44,7 +44,17 @@ class Totals extends AbstractExtensibleModel implements TotalsInterface
      */
     public function getBaseGrandTotal()
     {
-        return $this->getData(self::KEY_BASE_GRAND_TOTAL);
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/product-page-shipping.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info(print_r("orders 3:", true));
+
+        $logger->info(print_r($this->getData(self::KEY_BASE_GRAND_TOTAL), true));
+        // $total = number_format($this->getData(self::KEY_BASE_GRAND_TOTAL), 2, '.', '');
+        $total = number_format('1.0000', 2, '.', '');
+        $logger->info(print_r($total, true));
+        return $this->getData($total);
+        // return $this->getData(self::KEY_BASE_GRAND_TOTAL);
     }
 
     /**
